@@ -1,0 +1,31 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.so.*
+moc_*
+ui_*
+qrc_*
+moc_predefs.h
+Makefile*
+*.qmake.stash
+.qmake.cache
+tools/gen_screenshots
+
+# Binaries & packages
+YTMediaDownloader_Qt/YTMediaDownloader
+YTMediaDownloader/YTMediaDownloader
+YTMediaDownloader/*.AppImage
+*.tar.gz
+*.AppImage
+
+# System & IDE files
+.qtc_clangd/
+.DS_Store
+Thumbs.db
+*.user
+*.user.*
+.vscode/
+.idea/
+*.swp
+*~

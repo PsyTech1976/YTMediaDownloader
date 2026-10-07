@@ -1,0 +1,61 @@
+===============================================================================
+                       LOG DI SVILUPPO E REVISIONE
+                           YTMediaDownloader
+===============================================================================
+
+[2026-08-07 07:15:00] RIGENERAZIONE COMPLETA: Pulizia totale del disco e rigenerazione da zero di tutte le componenti.
+[2026-08-07 07:15:10] STRUTTURA: Creazione della gerarchia di cartelle (MainWindow, MediaAnalyzerDialog, SettingsDialog, Resources, CoreApp, localizzazione).
+[2026-08-07 07:15:20] BUGFIX & MODIFICHE:
+  - Estrazione e priorità in cima alla lista per audio e sottotitoli in lingua italiana (it, it-IT, it_IT).
+  - Pulsanti separati 'Seleziona Tutti' e 'Deseleziona Tutti' per le tracce audio e i sottotitoli in MediaAnalyzerDialog.
+  - Pulsante 'Apri File Scaricato' (btnOpenFile) e finestra di dialogo a fine processo per l'apertura diretta.
+  - Gestione della cartella temporanea di lavorazione (.tmp_titolo) e cancellazione automatica al termine.
+[2026-08-07 07:15:30] COMPILAZIONE: Compilazione pulita con qmake e make.
+[2026-08-07 07:15:40] PACKAGING: Creazione pacchetto portabile AppImage ed archiviazione finale in YTMediaDownloader.zip.
+[2026-08-07 07:51:00] AVVIO: MainWindow inizializzata con successo.
+[2026-08-09 12:36:23] AVVIO: MainWindow inizializzata con successo.
+[2026-08-09 12:36:55] AVVIO: MainWindow inizializzata con successo.
+[2026-08-09 12:37:10] AVVIO: MainWindow inizializzata con successo.
+[2026-08-10 05:54:46] AVVIO: MainWindow inizializzata con successo.
+[2026-10-07 10:39:15] AVVIO: MainWindow inizializzata con avanzamento a fasi ed animazione grafica per tempi indeterminati.
+[2026-10-07 11:50:18] AVVIO: MainWindow inizializzata con FFmpeg worker thread separato.
+[2026-10-07 11:51:00] THREAD & KILL TREE: Spostamento di FFmpegManager su QThread dedicato (m_workerThread); gestione terminazione ricorsiva albero processi (killProcessTree via SIGKILL/pkill) e rimozione totale file temporanei e cache su cancellazione.
+[2026-10-07 12:06:19] AVVIO: MainWindow inizializzata con FFmpeg worker thread separato.
+[2026-10-07 12:06:00] POPUP LINGUA & LOCALIZZAZIONE: Aggiunto pulsante con menu popup rapido per la selezione lingua (IT, EN, FR, DE, ES) nella finestra principale; localizzazione completa interfaccia e sommario nelle 5 lingue; aggancio bidirezionale automatico della Guida Utente HTML alla lingua del programma.
+[2026-10-07 12:30:00] MENU BAR & SISTEMA & ABOUT:
+  - Aggiunta della barra dei menu completa (QMenuBar) con menu File, Opzioni, Lingua e Aiuto e relative scorciatoie da tastiera.
+  - Implementazione del gestore DesktopIntegrationManager e pulsante toggle visibilità dell'applicazione nei menu di sistema (XDG Desktop Entry).
+  - Creazione della finestra AboutDialog con attribuzione esplicita: "Software realizzato con IA su un'idea di PsyTech6."
+  - Integrazione delle bandiere nazionali in tutti i selettori di lingua (MainWindow, MenuBar, SettingsDialog, HelpDialog).
+  - Posizionamento automatico del cursore con focus sul campo link YouTube all'avvio.
+  - Verifica e sanificazione totale del codice da percorsi utente specifici o password.
+  - Aggiornamento documentazione nel codice sorgente, guide HTML (IT, EN, FR, DE, ES) e SPEC.md.
+  - Rilascio standalone AppImage con bundling completo di ffmpeg, ffprobe, yt-dlp e copia su Scrivania.
+
+[2026-10-07 13:06:35] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:10:00] BUGFIX & REFACTORING "MOSTRA NELLA CARTELLA":
+  - Risolto il problema del pulsante "Mostra nella Cartella" (btnOpenFolder) che appariva inattivo o non rispondeva su Wayland / KDE Plasma / AppImage.
+  - Sostituito il blocco sincrono/bloccante dbus-send con l'esecuzione asincrona staccata (QProcess::startDetached) e sanificazione dell'ambiente LD_LIBRARY_PATH all'interno dell'AppImage (metodo ausiliario FileManager::runDetachedCommand).
+  - Implementato supporto nativo prioritario per Dolphin (--select), Nautilus (--select), Nemo e Caja prima del fallback asincrono D-Bus.
+  - Rifattorizzato il flusso logico del pulsante in un metodo dedicato richiamabile MainWindow::openDownloadLocation() per garantire manutenibilità ed estendibilità.
+  - Persistenza dell'ultimo percorso file scaricato (lastDownloadedFilePath) in SettingsManager per mantenere la modalità selezione file anche tra sessioni dell'applicazione.
+  - Aggiunto feedback immediato nella barra di stato all'apertura della cartella o selezione del file.
+[2026-10-07 13:14:00] BUGFIX BANDIERE MENU LINGUA:
+  - Risolto il problema della mancata visualizzazione delle bandiere nei menu lingua (finestra principale e finestra Guida).
+  - Causa: l'uso di caratteri unicode regional indicator (emoji) non è supportato dai font di default o dal rendering nativo dei menu di sistema su Linux.
+  - Soluzione: integrati file icona PNG reali ad alta risoluzione delle bandiere nazionali (it, gb, fr, de, es) nel file di risorse Qt (resources.qrc sotto :/icons/flags/).
+  - Aggiunti i metodi di utilità LocalizationManager::languageIcon(code) e LocalizationManager::languageCleanName(code).
+  - Aggiornati con icone reali sia i menu a discesa (popup testata e QMenuBar) sia i pulsanti con indicatore lingua della MainWindow e della HelpDialog, nonché il selettore lingua in SettingsDialog.
+  - Ricompilazione binario, packaging AppImage aggiornato e copia su Scrivania (~/Scrivania/YTMediaDownloader.AppImage).
+[2026-10-07 13:59:00] BUGFIX DOWNLOAD TRACCE AUDIO:
+  - Risolto il problema per cui le tracce audio selezionate non venivano scaricate correttamente pur essendo riconosciute in analisi.
+  - Causa 1: Disallineamento tra i parametri di estrazione: analyzeUrl utilizzava player_client=all mentre startDownload forzava player_client=web_embedded. Poiché web_embedded espone un set di format ID completamente differente (o privo delle tracce localizzate ad alto bitrate), yt-dlp falliva il formato richiesto e attivava il fallback silenzioso su bestaudio (scaricando solo l'audio default/inglese).
+  - Causa 2: Inclusione di flussi frammentati HLS m3u8 (es. 233-x) con bitrate nullo nella lista audio anziché dare priorità ai flussi HTTPS diretti ad alta fedeltà (140-x AAC e 251-x Opus).
+  - Soluzione: Rimossi i parametri divergenti extractor-args consentendo a yt-dlp di operare con configurazione nativa e allineata tra analisi e download; filtrati i flussi m3u8 a favore di flussi diretti HTTPS; ordinamento decrescente delle tracce per bitrate audio; migliorata la stringa di formato fail-safe con preservazione delle tracce audio selezionate.
+  - Ricompilazione binario, packaging AppImage aggiornato e copia su Scrivania (~/Scrivania/YTMediaDownloader.AppImage).
+[2026-10-07 16:22:00] RILASCIO COMPLETO, VERIFICA CODICE E GUIDE MULTILINGUA:
+  - Verifica esaustiva e completezza dei commenti in tutto il codice sorgente C++ (.h e .cpp) con annotazioni Doxygen su classi, metodi, strutture e punti d'ingresso.
+  - Revisione e allineamento di tutte le guide utente HTML in 5 lingue (guide_it.html, guide_en.html, guide_fr.html, guide_de.html, guide_es.html) con spiegazione completa delle 11 sezioni operative (avvio e focus cursore, barra dei menu e scorciatoie, integrazione di sistema XDG, analisi video, selezione multitraccia, worker thread asincrono e cancellazione sicura, metadati lingua ISO 639-2, visualizzazione file nel desktop con doppia modalità, impostazioni con icone bandiere grafiche e crediti software PsyTech6 & IA).
+  - Verifica e allineamento del file delle specifiche tecniche SPEC.md.
+  - Ricompilazione pulita con make -j$(nproc) e rigenerazione AppImage standalone con appimagetool integrando yt-dlp, ffmpeg e librerie audio/video.
+  - Distribuzione del pacchetto aggiornato su Scrivania (~/Scrivania/YTMediaDownloader.AppImage) ed esportazione archivio di rilascio.

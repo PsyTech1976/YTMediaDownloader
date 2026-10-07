@@ -1,0 +1,24 @@
+===============================================================================
+                    RIFERIMENTO INTERFACCIA: MAINWINDOW
+===============================================================================
+
+CATEGORIA MACRO: MainWindow
+SCOPO: Controller e finestra di interfaccia utente principale (MainWindow.ui).
+
+FUNZIONI PUBBLICHE:
+- MainWindow(QWidget *parent = nullptr)
+- ~MainWindow()
+- void retranslateUi()
+
+SLOT PRIVATI:
+- void onPasteClicked()
+- void onAnalyzeClicked()
+- void onBrowseClicked()
+- void onSettingsClicked()
+- void onDownloadClicked()
+- void onOpenFileClicked()
+- void onLanguageChanged(int index)
+- void onAnalysisCompleted(bool success, const MediaMetadata& metadata, const QString& errorMessage)
+- void onProgressUpdated(double percentage, const QString& currentStep, const QString& timeRemaining)
+- void onDownloadCompleted(bool success, const QString& finalFilePath, const QString& errorMessage)
+===============================================================================

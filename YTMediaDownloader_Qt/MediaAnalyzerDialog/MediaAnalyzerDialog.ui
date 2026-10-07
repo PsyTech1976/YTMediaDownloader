@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MediaAnalyzerDialog</class>
+ <widget class="QDialog" name="MediaAnalyzerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>680</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Analisi e Selezione Tracce Media</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="grpVideo">
+     <property name="title">
+      <string>Formato e Risoluzione Video</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lblResolution">
+        <property name="text">
+         <string>Risoluzione Video:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboResolution"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lblContainer">
+        <property name="text">
+         <string>Contenitore Output:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="comboContainer"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grpAudio">
+     <property name="title">
+      <string>Tracce Audio da Allegare (Selezione Multipla)</string>
+     </property>
+     <layout class="QVBoxLayout" name="vLayoutAudio">
+      <item>
+       <layout class="QHBoxLayout" name="hLayoutAudioBtns">
+        <item>
+         <widget class="QPushButton" name="btnSelectAllAudio">
+          <property name="text">
+           <string>Seleziona Tutti</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnDeselectAllAudio">
+          <property name="text">
+           <string>Deseleziona Tutti</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="audioBtnSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listAudioTracks"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grpSubs">
+     <property name="title">
+      <string>Sottotitoli da Allegare (Selezione Multipla)</string>
+     </property>
+     <layout class="QVBoxLayout" name="vLayoutSubs">
+      <item>
+       <layout class="QHBoxLayout" name="hLayoutSubBtns">
+        <item>
+         <widget class="QPushButton" name="btnSelectAllSubs">
+          <property name="text">
+           <string>Seleziona Tutti</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnDeselectAllSubs">
+          <property name="text">
+           <string>Deseleziona Tutti</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="subBtnSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listSubtitles"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="hLayoutButtons">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnConfirm">
+       <property name="text">
+        <string>Conferma Selezione</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCancel">
+       <property name="text">
+        <string>Annulla</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

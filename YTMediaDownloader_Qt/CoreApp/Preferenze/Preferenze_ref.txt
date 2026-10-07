@@ -1,0 +1,7 @@
+===============================================================================
+                    RIFERIMENTO INTERFACCIA: PREFERENZE
+===============================================================================
+
+CATEGORIA MACRO: CoreApp/Preferenze
+SCOPO: Memorizzazione persistente delle impostazioni utente tramite QSettings.
+===============================================================================

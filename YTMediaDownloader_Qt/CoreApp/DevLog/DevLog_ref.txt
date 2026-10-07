@@ -1,0 +1,7 @@
+===============================================================================
+                     RIFERIMENTO INTERFACCIA: DEVLOG
+===============================================================================
+
+CATEGORIA MACRO: CoreApp/DevLog
+SCOPO: Gestione del file di log per tenere traccia dello sviluppo e delle revisioni con data ed ora.
+===============================================================================

@@ -1,0 +1,21 @@
+===============================================================================
+                 RIFERIMENTO INTERFACCIA: SETTINGSDIALOG
+===============================================================================
+
+CATEGORIA MACRO: SettingsDialog
+SCOPO: Finestra di dialogo GUI (.ui) per la configurazione delle impostazioni generali dell'applicazione.
+
+-------------------------------------------------------------------------------
+FILE: SettingsDialog.h / SettingsDialog.cpp
+DESCRIZIONE: Controller GUI per il modulo SettingsDialog.ui.
+
+FUNZIONI PUBBLICHE:
+- SettingsDialog(QWidget *parent = nullptr)
+- ~SettingsDialog()
+- void retranslateUi()
+
+SLOT PRIVATI:
+- void onBrowsePathClicked()
+- void onSaveClicked()
+- void onCancelClicked()
+===============================================================================

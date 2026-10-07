@@ -1,0 +1,64 @@
+===============================================================================
+                       LOG DI SVILUPPO E REVISIONE
+                           YTMediaDownloader
+===============================================================================
+
+[2026-08-07 07:15:00] RIGENERAZIONE COMPLETA: Pulizia totale del disco e rigenerazione da zero di tutte le componenti.
+[2026-08-07 07:15:10] STRUTTURA: Creazione della gerarchia di cartelle (MainWindow, MediaAnalyzerDialog, SettingsDialog, Resources, CoreApp, localizzazione).
+[2026-08-07 07:15:20] BUGFIX & MODIFICHE:
+  - Estrazione e priorità in cima alla lista per audio e sottotitoli in lingua italiana (it, it-IT, it_IT).
+  - Pulsanti separati 'Seleziona Tutti' e 'Deseleziona Tutti' per le tracce audio e i sottotitoli in MediaAnalyzerDialog.
+  - Pulsante 'Apri File Scaricato' (btnOpenFile) e finestra di dialogo a fine processo per l'apertura diretta.
+  - Gestione della cartella temporanea di lavorazione (.tmp_titolo) e cancellazione automatica al termine.
+[2026-08-07 07:15:30] COMPILAZIONE: Compilazione pulita con qmake e make.
+[2026-08-07 07:15:40] PACKAGING: Creazione pacchetto portabile AppImage ed archiviazione finale in YTMediaDownloader.zip.
+[2026-08-07 07:51:00] AVVIO: MainWindow inizializzata con successo.
+[2026-08-09 12:36:23] AVVIO: MainWindow inizializzata con successo.
+[2026-08-09 12:36:55] AVVIO: MainWindow inizializzata con successo.
+[2026-08-09 12:37:10] AVVIO: MainWindow inizializzata con successo.
+[2026-08-10 05:54:46] AVVIO: MainWindow inizializzata con successo.
+[2026-10-07 10:39:15] AVVIO: MainWindow inizializzata con avanzamento a fasi ed animazione grafica per tempi indeterminati.
+[2026-10-07 11:50:18] AVVIO: MainWindow inizializzata con FFmpeg worker thread separato.
+[2026-10-07 11:51:00] THREAD & KILL TREE: Spostamento di FFmpegManager su QThread dedicato (m_workerThread); gestione terminazione ricorsiva albero processi (killProcessTree via SIGKILL/pkill) e rimozione totale file temporanei e cache su cancellazione.
+[2026-10-07 12:06:19] AVVIO: MainWindow inizializzata con FFmpeg worker thread separato.
+[2026-10-07 12:06:00] POPUP LINGUA & LOCALIZZAZIONE: Aggiunto pulsante con menu popup rapido per la selezione lingua (IT, EN, FR, DE, ES) nella finestra principale; localizzazione completa interfaccia e sommario nelle 5 lingue; aggancio bidirezionale automatico della Guida Utente HTML alla lingua del programma.
+[2026-10-07 12:30:00] MENU BAR & SISTEMA & ABOUT:
+  - Aggiunta della barra dei menu completa (QMenuBar) con menu File, Opzioni, Lingua e Aiuto e relative scorciatoie da tastiera.
+  - Implementazione del gestore DesktopIntegrationManager e pulsante toggle visibilità dell'applicazione nei menu di sistema (XDG Desktop Entry).
+  - Creazione della finestra AboutDialog con attribuzione esplicita: "Software realizzato con IA su un'idea di PsyTech6."
+  - Integrazione delle bandiere nazionali in tutti i selettori di lingua (MainWindow, MenuBar, SettingsDialog, HelpDialog).
+  - Posizionamento automatico del cursore con focus sul campo link YouTube all'avvio.
+  - Verifica e sanificazione totale del codice da percorsi utente specifici o password.
+  - Aggiornamento documentazione nel codice sorgente, guide HTML (IT, EN, FR, DE, ES) e SPEC.md.
+  - Rilascio standalone AppImage con bundling completo di ffmpeg, ffprobe, yt-dlp e copia su Scrivania.
+
+[2026-10-07 12:33:44] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 12:33:46] INTEGRAZIONE_SISTEMA: File .desktop creato con successo in: /home/tonibu/.local/share/applications/YTMediaDownloader.desktop (Exec: /home/tonibu/.gemini/antigravity/scratch/YTMediaDownloader/YTMediaDownloader/YTMediaDownloader.AppImage)
+[2026-10-07 12:35:38] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 12:35:43] FILE_MANAGER: Aperta cartella di download: /home/tonibu/Video
+[2026-10-07 12:35:53] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 12:35:54] GUIDA: Aperta finestra Guida Utente agganciata alla lingua del programma.
+[2026-10-07 12:37:00] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 12:37:05] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:06:29] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:07:41] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:13:37] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:13:48] FILE_MANAGER: Aperta cartella di download: /home/tonibu/Video
+[2026-10-07 13:14:20] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:15:00] ANALISI: Incollato ed avviata analisi per URL: https://www.youtube.com/watch?v=lLg0dp9Pic8&t
+[2026-10-07 13:15:12] ANALISI: Analisi completata con successo: Linux boot process Explained - Animated
+[2026-10-07 13:15:15] DOWNLOAD: Avviato download nella cartella predefinita: /home/tonibu/Video
+[2026-10-07 13:15:29] FILE_MANAGER: Aperta cartella di download: /home/tonibu/Video
+[2026-10-07 13:15:46] DOWNLOAD: Download completato con successo: /home/tonibu/Video/Linux boot process Explained - Animated.mp4
+[2026-10-07 13:15:49] APERTURA: Aperto file scaricato: /home/tonibu/Video/Linux boot process Explained - Animated.mp4
+[2026-10-07 13:17:21] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:17:22] FILE_MANAGER: Selezionato file scaricato nella cartella: /home/tonibu/Video/Linux boot process Explained - Animated.mp4
+[2026-10-07 16:08:14] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 16:08:20] ANALISI: Incollato ed avviata analisi per URL: https://store.steampowered.com/app/4078430/STAR_WARS_Galactic_Racer/
+[2026-10-07 16:08:22] ANALISI: Analisi completata con successo: STAR WARS: Galactic Racer™
+[2026-10-07 16:08:56] ANALISI: Incollato ed avviata analisi per URL: https://www.youtube.com/watch?v=lLg0dp9Pic8&t
+[2026-10-07 16:08:59] FILE_MANAGER: Selezionato file scaricato nella cartella: /home/tonibu/Video/Linux boot process Explained - Animated.mp4
+[2026-10-07 16:09:00] ANALISI: Analisi completata con successo: Linux boot process Explained - Animated
+[2026-10-07 16:09:15] DOWNLOAD: Avviato download nella cartella predefinita: /home/tonibu/Video
+[2026-10-07 16:10:11] DOWNLOAD: Download completato con successo: /home/tonibu/Video/Linux boot process Explained - Animated.mp4
+[2026-10-07 16:11:46] APERTURA: Aperto file scaricato: /home/tonibu/Video/Linux boot process Explained - Animated.mp4

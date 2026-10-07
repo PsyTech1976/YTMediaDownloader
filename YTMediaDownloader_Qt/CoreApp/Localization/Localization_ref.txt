@@ -1,0 +1,7 @@
+===============================================================================
+                     RIFERIMENTO INTERFACCIA: LOCALIZATION
+===============================================================================
+
+CATEGORIA MACRO: CoreApp/Localization
+SCOPO: Gestione della localizzazione ed internazionalizzazione dell'applicazione tramite parsing di file XML con estensione .rsc.
+===============================================================================

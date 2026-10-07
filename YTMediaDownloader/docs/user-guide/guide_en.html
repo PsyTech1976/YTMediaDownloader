@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - YTMediaDownloader Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div>
+                    <h1>User Guide - YTMediaDownloader Pro</h1>
+                    <p class="subtitle">Operating manual and technical documentation</p>
+                </div>
+                <div class="lang-selector">
+                    <a href="guide_it.html">🇮🇹 IT</a> |
+                    <a href="guide_en.html" class="active">🇬🇧 EN</a> |
+                    <a href="guide_fr.html">🇫🇷 FR</a> |
+                    <a href="guide_de.html">🇩🇪 DE</a> |
+                    <a href="guide_es.html">🇪🇸 ES</a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#intro">1. Introduction &amp; Requirements</a></li>
+                <li><a href="#startup">2. Quick Start, Automatic Focus &amp; Single Instance</a></li>
+                <li><a href="#menubar">3. Menu Bar &amp; Keyboard Shortcuts</a></li>
+                <li><a href="#system">4. OS Desktop Search &amp; Menu Integration</a></li>
+                <li><a href="#analysis">5. Video Link Analysis</a></li>
+                <li><a href="#options">6. Format, Audio &amp; Subtitle Selection</a></li>
+                <li><a href="#download">7. Downloading &amp; Process Monitoring</a></li>
+                <li><a href="#finalization">8. FFmpeg Finalization &amp; Language Tags</a></li>
+                <li><a href="#file-manager">9. Opening &amp; Locating Files on Desktop</a></li>
+                <li><a href="#settings">10. Preferences, Flag Menus &amp; About Software</a></li>
+                <li><a href="#faq">11. FAQ &amp; Troubleshooting</a></li>
+            </ul>
+        </nav>
+
+        <section id="intro">
+            <h2>1. Introduction &amp; Requirements</h2>
+            <p><strong>YTMediaDownloader Pro</strong> is a modern desktop utility designed to analyze, download, and multiplex YouTube video streams, multitrack audio channels, and subtitles safely and rapidly.</p>
+            <p>The package is fully self-contained: it bundles high-performance multimedia engines (<code>yt-dlp</code>, <code>ffmpeg</code>, <code>ffprobe</code>, and required libraries) without requiring separate external dependencies.</p>
+        </section>
+
+        <section id="startup">
+            <h2>2. Quick Start, Automatic Focus &amp; Single Instance</h2>
+            <p>Upon launching the application:</p>
+            <ul>
+                <li><strong>Automatic Input Focus:</strong> The typing cursor is instantly positioned inside the <em>YouTube Video Link</em> field, allowing immediate pasting with <code>Ctrl+V</code> or the dedicated button.</li>
+                <li><strong>Single Instance Enforcement:</strong> If the application is already running, starting another instance will display a warning and safely terminate to protect concurrent operations.</li>
+            </ul>
+        </section>
+
+        <section id="menubar">
+            <h2>3. Menu Bar &amp; Keyboard Shortcuts</h2>
+            <p>The application features a comprehensive top menu bar providing convenient shortcuts:</p>
+            <ul>
+                <li><strong>File Menu:</strong>
+                    <ul>
+                        <li><em>Paste &amp; Analyze Link</em> (<code>Ctrl+V</code>)</li>
+                        <li><em>Start Download</em> (<code>Ctrl+D</code>)</li>
+                        <li><em>Cancel Process</em> (<code>Esc</code>)</li>
+                        <li><em>Open Downloaded File</em> (<code>Ctrl+O</code>)</li>
+                        <li><em>Show in Folder</em> (<code>Ctrl+F</code>)</li>
+                        <li><em>Exit</em> (<code>Ctrl+Q</code>)</li>
+                    </ul>
+                </li>
+                <li><strong>Options Menu:</strong>
+                    <ul>
+                        <li><em>Edit Video/Audio Options...</em> (<code>Ctrl+E</code>)</li>
+                        <li><em>System Menu Integration</em> (toggle visibility in OS search)</li>
+                        <li><em>Settings...</em> (<code>Ctrl+,</code>)</li>
+                    </ul>
+                </li>
+                <li><strong>Language Menu:</strong>
+                    Enables instant language switching with national flag indicators (🇮🇹 Italiano, 🇬🇧 English, 🇫🇷 Français, 🇩🇪 Deutsch, 🇪🇸 Español).
+                </li>
+                <li><strong>Help Menu:</strong>
+                    <ul>
+                        <li><em>User Guide</em> (<code>F1</code>)</li>
+                        <li><em>About Software...</em> (<code>Ctrl+I</code>)</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="system">
+            <h2>4. OS Desktop Search &amp; Menu Integration</h2>
+            <p>Use the <strong>Integrate with System / In System Menu</strong> button in the top bar:</p>
+            <ul>
+                <li><strong>Enable (➕ Integrate with System):</strong> Creates an XDG-compliant <code>.desktop</code> entry and high-res icon in your user applications folder. The app immediately becomes searchable in your OS application launcher (GNOME Shell, KDE KRunner, Whisker Menu, etc.).</li>
+                <li><strong>Disable (✔ In System Menu):</strong> Removes the desktop launcher from the OS menu system while keeping your portable AppImage file intact.</li>
+            </ul>
+        </section>
+
+        <section id="analysis">
+            <h2>5. Video Link Analysis</h2>
+            <p>Click <strong>Paste &amp; Analyze Link</strong> to automatically read the URL from the system clipboard and initiate stream discovery across all available resolutions and formats.</p>
+        </section>
+
+        <section id="options">
+            <h2>6. Format, Audio &amp; Subtitle Selection</h2>
+            <p>The media analyzer dialog lets you customize resolution (up to 4K/8K 60fps), container format (MP4, MKV, WebM), audio streams (original, localized, and other languages), and manual/automatic subtitles.</p>
+        </section>
+
+        <section id="download">
+            <h2>7. Downloading &amp; Process Monitoring</h2>
+            <p>During downloads, FFmpeg background processing is executed on a dedicated worker thread, keeping the GUI responsive while displaying percentage, active phase, and estimated time remaining.</p>
+        </section>
+
+        <section id="finalization">
+            <h2>8. FFmpeg Finalization &amp; Language Tags</h2>
+            <p>Streams are multiplexed with ISO 639-2 language tags and descriptive track titles, ensuring video players (such as VLC, smart TVs, and mobile players) clearly display tags like <code>Track 1 - [English]</code>.</p>
+        </section>
+
+        <section id="file-manager">
+            <h2>9. Opening &amp; Locating Files on Desktop</h2>
+            <p>The <strong>Show in Folder</strong> button is always enabled:</p>
+            <ul>
+                <li>If a video has been downloaded, it highlights and selects the file in your desktop file manager.</li>
+                <li>If no download has completed yet, it opens the target folder showing its directory contents.</li>
+            </ul>
+        </section>
+
+        <section id="settings">
+            <h2>10. Preferences, Flag Menus &amp; About Software</h2>
+            <p>All localization menus display country flag emojis for clear visual identification:</p>
+            <ul>
+                <li>🇮🇹 Italiano, 🇬🇧 English, 🇫🇷 Français, 🇩🇪 Deutsch, 🇪🇸 Español.</li>
+            </ul>
+            <div class="callout callout-tip">
+                <strong>About YTMediaDownloader:</strong>
+                <br>Available under <em>Help &rarr; About Software...</em> (<code>Ctrl+I</code>):
+                <br><strong>"Software realizzato con IA su un'idea di PsyTech6."</strong>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>11. FAQ &amp; Troubleshooting</h2>
+            <h3>How do I make the app appear in my desktop search?</h3>
+            <p>Click the <strong>Integrate with System</strong> button in the top right header to instantly add it to your OS launcher.</p>
+        </section>
+
+        <footer>
+            <p>YTMediaDownloader Pro &copy; 2026 - Software realizzato con IA su un'idea di PsyTech6.</p>
+        </footer>
+    </div>
+</body>
+</html>

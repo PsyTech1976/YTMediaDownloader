@@ -1,0 +1,26 @@
+===============================================================================
+               RIFERIMENTO INTERFACCIA: MEDIAANALYZERDIALOG
+===============================================================================
+
+CATEGORIA MACRO: MediaAnalyzerDialog
+SCOPO: Finestra di dialogo GUI (.ui) per la selezione delle opzioni video, contenitore, 
+tracce audio e sottotitoli con supporto per selezione/deselezione massiva.
+
+-------------------------------------------------------------------------------
+FILE: MediaAnalyzerDialog.h / MediaAnalyzerDialog.cpp
+DESCRIZIONE: Controller GUI per la finestra di configurazione media.
+
+FUNZIONI PUBBLICHE:
+- MediaAnalyzerDialog(const MediaMetadata& metadata, QWidget *parent = nullptr)
+- ~MediaAnalyzerDialog()
+- DownloadOptions getSelectedOptions() const
+- void retranslateUi()
+
+SLOT PRIVATI:
+- void onConfirmClicked()
+- void onCancelClicked()
+- void onSelectAllAudioClicked()
+- void onDeselectAllAudioClicked()
+- void onSelectAllSubsClicked()
+- void onDeselectAllSubsClicked()
+===============================================================================

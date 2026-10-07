@@ -1,0 +1,11 @@
+===============================================================================
+                      RIFERIMENTO INTERFACCIA: FFMPEG
+===============================================================================
+
+CATEGORIA MACRO: CoreApp/FFmpeg
+SCOPO: Integrazione con i tool esterni yt-dlp ed FFmpeg.
+
+-------------------------------------------------------------------------------
+FILE: FFmpegManager.h / FFmpegManager.cpp
+DESCRIZIONE: Gestore asincrono basato su QProcess per il controllo di yt-dlp ed FFmpeg.
+===============================================================================

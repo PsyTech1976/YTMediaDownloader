@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Utilisateur - YTMediaDownloader Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div>
+                    <h1>Guide Utilisateur - YTMediaDownloader Pro</h1>
+                    <p class="subtitle">Manuel d'utilisation et documentation technique complète</p>
+                </div>
+                <div class="lang-selector">
+                    <a href="guide_it.html">🇮🇹 IT</a> |
+                    <a href="guide_en.html">🇬🇧 EN</a> |
+                    <a href="guide_fr.html" class="active">🇫🇷 FR</a> |
+                    <a href="guide_de.html">🇩🇪 DE</a> |
+                    <a href="guide_es.html">🇪🇸 ES</a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="toc">
+            <h3>Table des Matières</h3>
+            <ul>
+                <li><a href="#intro">1. Présentation et Prérequis</a></li>
+                <li><a href="#startup">2. Démarrage Rapide, Focus Automatique et Instance Unique</a></li>
+                <li><a href="#menubar">3. Barre des Menus et Raccourcis Clavier</a></li>
+                <li><a href="#system">4. Intégration au Menu Système et Recherche OS</a></li>
+                <li><a href="#analysis">5. Analyse du Lien Vidéo</a></li>
+                <li><a href="#options">6. Sélection des Formats, Audio et Sous-titres</a></li>
+                <li><a href="#download">7. Téléchargement et Suivi du Processus</a></li>
+                <li><a href="#finalization">8. Finalisation FFmpeg et Balises de Langue</a></li>
+                <li><a href="#file-manager">9. Ouverture et Localisation des Fichiers</a></li>
+                <li><a href="#settings">10. Préférences, Menus avec Drapeaux et À Propos</a></li>
+                <li><a href="#faq">11. FAQ et Dépannage</a></li>
+            </ul>
+        </nav>
+
+        <section id="intro">
+            <h2>1. Présentation et Prérequis</h2>
+            <p><strong>YTMediaDownloader Pro</strong> est une application de bureau moderne conçue pour analyser, télécharger et multiplexer des flux vidéo, des pistes audio multilingues et des sous-titres YouTube en toute sécurité et rapidité.</p>
+            <p>Le logiciel est entièrement autonome : il intègre directement les outils multimédias haute performance (<code>yt-dlp</code>, <code>ffmpeg</code>, <code>ffprobe</code> et leurs bibliothèques) sans requérir d'installations supplémentaires.</p>
+        </section>
+
+        <section id="startup">
+            <h2>2. Démarrage Rapide, Focus Automatique et Instance Unique</h2>
+            <p>Au lancement du programme :</p>
+            <ul>
+                <li><strong>Curseur Automatique :</strong> Le curseur se positionne immédiatement dans le champ <em>Lien Vidéo YouTube</em> pour coller directement l'URL avec <code>Ctrl+V</code>.</li>
+                <li><strong>Protection Instance Unique :</strong> Le lancement d'une deuxième instance simultanée est bloqué pour protéger vos téléchargements en cours.</li>
+            </ul>
+        </section>
+
+        <section id="menubar">
+            <h2>3. Barre des Menus et Raccourcis Clavier</h2>
+            <p>La barre des menus offre un accès rapide à l'ensemble des fonctions :</p>
+            <ul>
+                <li><strong>Menu Fichier :</strong>
+                    <ul>
+                        <li><em>Coller et Analyser le Lien</em> (<code>Ctrl+V</code>)</li>
+                        <li><em>Démarrer le Téléchargement</em> (<code>Ctrl+D</code>)</li>
+                        <li><em>Arrêter le Processus</em> (<code>Esc</code>)</li>
+                        <li><em>Ouvrir le Fichier Téléchargé</em> (<code>Ctrl+O</code>)</li>
+                        <li><em>Afficher dans le Dossier</em> (<code>Ctrl+F</code>)</li>
+                        <li><em>Quitter</em> (<code>Ctrl+Q</code>)</li>
+                    </ul>
+                </li>
+                <li><strong>Menu Options :</strong>
+                    <ul>
+                        <li><em>Modifier les Options Vidéo/Audio...</em> (<code>Ctrl+E</code>)</li>
+                        <li><em>Intégration au Menu Système</em> (activation/désactivation)</li>
+                        <li><em>Paramètres...</em> (<code>Ctrl+,</code>)</li>
+                    </ul>
+                </li>
+                <li><strong>Menu Langue :</strong>
+                    Permet de changer instantanément la langue de l'application avec drapeaux nationaux (🇮🇹 Italien, 🇬🇧 Anglais, 🇫🇷 Français, 🇩🇪 Allemand, 🇪🇸 Espagnol).
+                </li>
+                <li><strong>Menu Aide :</strong>
+                    <ul>
+                        <li><em>Guide Utilisateur</em> (<code>F1</code>)</li>
+                        <li><em>À Propos du Logiciel...</em> (<code>Ctrl+I</code>)</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="system">
+            <h2>4. Intégration au Menu Système et Recherche OS</h2>
+            <p>Le bouton <strong>Intégrer au Système / Dans le Menu Système</strong> :</p>
+            <ul>
+                <li><strong>Activer (➕ Intégrer au Système) :</strong> Installe le raccourci standard XDG (<code>.desktop</code>) et l'icône haute résolution dans votre dossier d'applications. L'application devient immédiatement trouvable dans la recherche d'applications (GNOME, KDE, XFCE).</li>
+                <li><strong>Désactiver (✔ Dans le Menu Système) :</strong> Supprime le lanceur du système tout en conservant le fichier AppImage intact.</li>
+            </ul>
+        </section>
+
+        <section id="analysis">
+            <h2>5. Analyse du Lien Vidéo</h2>
+            <p>Cliquez sur <strong>Coller et Analyser le Lien</strong> pour insérer l'URL depuis le presse-papiers et lancer la détection des flux vidéo, audio et sous-titres disponibles.</p>
+        </section>
+
+        <section id="options">
+            <h2>6. Sélection des Formats, Audio et Sous-titres</h2>
+            <p>La fenêtre de sélection vous permet de choisir la résolution (jusqu'à 4K/8K 60fps), le conteneur (MP4, MKV, WebM), les pistes audio (originales, localisées et autres langues) ainsi que les sous-titres.</p>
+        </section>
+
+        <section id="download">
+            <h2>7. Téléchargement et Suivi du Processus</h2>
+            <p>Le traitement FFmpeg s'exécute sur un thread d'arrière-plan dédié pour préserver la fluidité de l'interface. En cas d'annulation, tous les sous-processus sont arrêtés immédiatement et les fichiers temporaires sont nettoyés.</p>
+        </section>
+
+        <section id="finalization">
+            <h2>8. Finalisation FFmpeg et Balises de Langue</h2>
+            <p>Les flux sont multiplexés avec des balises ISO 639-2 et des titres descriptifs (ex. <code>Traccia 1 - [Français]</code>), assurant une compatibilité maximale sur tous les lecteurs vidéo (VLC, téléviseurs connectés, smartphones).</p>
+        </section>
+
+        <section id="file-manager">
+            <h2>9. Ouverture et Localisation des Fichiers</h2>
+            <p>Le bouton <strong>Afficher dans le Dossier</strong> est toujours actif :</p>
+            <ul>
+                <li>Si un téléchargement a été effectué, il met en surbrillance et sélectionne le fichier dans votre gestionnaire de fichiers.</li>
+                <li>Si aucun téléchargement n'a encore eu lieu, il ouvre le dossier de téléchargement en affichant son contenu.</li>
+            </ul>
+        </section>
+
+        <section id="settings">
+            <h2>10. Préférences, Menus avec Drapeaux et À Propos</h2>
+            <p>Tous les menus de langue affichent les drapeaux nationaux pour une identification claire :</p>
+            <ul>
+                <li>🇮🇹 Italiano, 🇬🇧 English, 🇫🇷 Français, 🇩🇪 Deutsch, 🇪🇸 Español.</li>
+            </ul>
+            <div class="callout callout-tip">
+                <strong>À Propos de YTMediaDownloader :</strong>
+                <br>Accessible depuis <em>Aide &rarr; À Propos du Logiciel...</em> (<code>Ctrl+I</code>) :
+                <br><strong>"Software realizzato con IA su un'idea di PsyTech6."</strong>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>11. FAQ et Dépannage</h2>
+            <h3>Comment faire apparaître l'application dans la recherche du bureau ?</h3>
+            <p>Cliquez sur le bouton <strong>Intégrer au Système</strong> dans la barre supérieure pour ajouter le raccourci à votre système.</p>
+        </section>
+
+        <footer>
+            <p>YTMediaDownloader Pro &copy; 2026 - Software realizzato con IA su un'idea di PsyTech6.</p>
+        </footer>
+    </div>
+</body>
+</html>

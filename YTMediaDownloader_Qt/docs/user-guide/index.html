@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTMediaDownloader - Guida Utente / User Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Rilevamento automatico della lingua del browser/sistema
+        (function() {
+            var userLang = (navigator.language || navigator.userLanguage || 'it').toLowerCase();
+            var target = 'guide_it.html';
+            if (userLang.startsWith('en')) {
+                target = 'guide_en.html';
+            } else if (userLang.startsWith('fr')) {
+                target = 'guide_fr.html';
+            } else if (userLang.startsWith('de')) {
+                target = 'guide_de.html';
+            } else if (userLang.startsWith('es')) {
+                target = 'guide_es.html';
+            } else if (userLang.startsWith('it')) {
+                target = 'guide_it.html';
+            }
+            // Reindirizzamento automatico se caricato in un browser completo
+            if (window.location.search.indexOf('no_redirect') === -1 && window.location.hash.indexOf('no_redirect') === -1) {
+                window.location.replace(target);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div>
+                    <h1>YTMediaDownloader</h1>
+                    <p class="subtitle">Guida Utente Ufficiale Multilingua / Official User Guide</p>
+                </div>
+                <div class="lang-selector">
+                    <a href="guide_it.html">🇮🇹 Italiano</a> |
+                    <a href="guide_en.html">🇬🇧 English</a> |
+                    <a href="guide_fr.html">🇫🇷 Français</a> |
+                    <a href="guide_de.html">🇩🇪 Deutsch</a> |
+                    <a href="guide_es.html">🇪🇸 Español</a>
+                </div>
+            </div>
+        </header>
+
+        <h2>Benvenuto / Welcome</h2>
+        <p>Seleziona la tua lingua per consultare la guida utente completa di <strong>YTMediaDownloader</strong>:</p>
+        
+        <ul>
+            <li><a href="guide_it.html"><strong>🇮🇹 Italiano</strong> - Guida Utente completa, configurazione e risoluzione problemi</a></li>
+            <li><a href="guide_en.html"><strong>🇬🇧 English</strong> - Complete User Guide, configuration and troubleshooting</a></li>
+            <li><a href="guide_fr.html"><strong>🇫🇷 Français</strong> - Guide de l'utilisateur complet, configuration et dépannage</a></li>
+            <li><a href="guide_de.html"><strong>🇩🇪 Deutsch</strong> - Vollständiges Benutzerhandbuch, Konfiguration und Fehlerbehebung</a></li>
+            <li><a href="guide_es.html"><strong>🇪🇸 Español</strong> - Guía del usuario completa, configuración y solución de problemas</a></li>
+        </ul>
+
+        <footer>
+            <p>YTMediaDownloader &copy; 2026 - Documentazione Ufficiale</p>
+        </footer>
+    </div>
+</body>
+</html>

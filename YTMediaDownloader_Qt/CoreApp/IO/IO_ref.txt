@@ -1,0 +1,19 @@
+===============================================================================
+                       RIFERIMENTO INTERFACCIA: IO
+===============================================================================
+
+CATEGORIA MACRO: CoreApp/IO
+SCOPO: Gestione dell'Input/Output sul File System, percorsi di salvataggio,
+validazione directory ed igienizzazione dei nomi file.
+
+-------------------------------------------------------------------------------
+FILE: FileManager.h / FileManager.cpp
+DESCRIZIONE: Classe ausiliaria con metodi statici per le operazioni su file system.
+
+FUNZIONI PUBBLICHE:
+- static QString defaultDownloadDirectory()
+- static bool ensureDirectoryExists(const QString& path)
+- static bool isValidDirectory(const QString& path)
+- static QString formatFileSize(qint64 bytes)
+- static QString sanitizeFilename(const QString& name)
+===============================================================================
