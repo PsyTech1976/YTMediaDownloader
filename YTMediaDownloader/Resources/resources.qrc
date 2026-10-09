@@ -1,5 +1,23 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/icon.png</file>
+        <file>icons/flags/it.png</file>
+        <file>icons/flags/gb.png</file>
+        <file>icons/flags/fr.png</file>
+        <file>icons/flags/de.png</file>
+        <file>icons/flags/es.png</file>
+        <file alias="theme.qss">app_theme.qss</file>
+        <file alias="docs/user-guide/index.html">../docs/user-guide/index.html</file>
+        <file alias="docs/user-guide/guide_it.html">../docs/user-guide/guide_it.html</file>
+        <file alias="docs/user-guide/guide_en.html">../docs/user-guide/guide_en.html</file>
+        <file alias="docs/user-guide/guide_fr.html">../docs/user-guide/guide_fr.html</file>
+        <file alias="docs/user-guide/guide_de.html">../docs/user-guide/guide_de.html</file>
+        <file alias="docs/user-guide/guide_es.html">../docs/user-guide/guide_es.html</file>
+        <file alias="docs/user-guide/style.css">../docs/user-guide/style.css</file>
+        <file alias="localizzazione/it_IT.rsc">../localizzazione/it_IT.rsc</file>
+        <file alias="localizzazione/en_EN.rsc">../localizzazione/en_EN.rsc</file>
+        <file alias="localizzazione/fr_FR.rsc">../localizzazione/fr_FR.rsc</file>
+        <file alias="localizzazione/de_DE.rsc">../localizzazione/de_DE.rsc</file>
+        <file alias="localizzazione/es_ES.rsc">../localizzazione/es_ES.rsc</file>
     </qresource>
 </RCC>

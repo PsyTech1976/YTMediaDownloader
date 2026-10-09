@@ -14,6 +14,9 @@
 #include "MainWindow/MainWindow.h"
 #include "CoreApp/Preferenze/SettingsManager.h"
 #include "CoreApp/Localization/LocalizationManager.h"
+#include <QStyleFactory>
+#include <QFile>
+#include <QPalette>
 
 /**
  * @brief Funzione di ingresso principale dell'applicazione.
@@ -27,6 +30,32 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationName("YTMediaDownloader");
     a.setOrganizationName("YTMediaDownloaderOrg");
+
+    // Imposta lo stile multipiattaforma Fusion per garantire coerenza visiva su tutti i sistemi
+    a.setStyle(QStyleFactory::create("Fusion"));
+
+    // Configura una palette moderna e luminosa coerente con il design di sistema
+    QPalette pal;
+    pal.setColor(QPalette::Window, QColor(248, 249, 250));
+    pal.setColor(QPalette::WindowText, QColor(33, 37, 41));
+    pal.setColor(QPalette::Base, QColor(255, 255, 255));
+    pal.setColor(QPalette::AlternateBase, QColor(241, 243, 245));
+    pal.setColor(QPalette::ToolTipBase, QColor(255, 255, 255));
+    pal.setColor(QPalette::ToolTipText, QColor(33, 37, 41));
+    pal.setColor(QPalette::Text, QColor(33, 37, 41));
+    pal.setColor(QPalette::Button, QColor(248, 249, 250));
+    pal.setColor(QPalette::ButtonText, QColor(33, 37, 41));
+    pal.setColor(QPalette::Highlight, QColor(13, 110, 253));
+    pal.setColor(QPalette::HighlightedText, Qt::white);
+    pal.setColor(QPalette::Link, QColor(13, 110, 253));
+    a.setPalette(pal);
+
+    // Applica il foglio di stile unificato incorporato nelle risorse
+    QFile themeFile(":/theme.qss");
+    if (themeFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        a.setStyleSheet(QString::fromUtf8(themeFile.readAll()));
+        themeFile.close();
+    }
 
     // Inizializza ed applica la lingua preferita memorizzata nelle impostazioni
     QString prefLang = SettingsManager::instance().preferredLanguage();

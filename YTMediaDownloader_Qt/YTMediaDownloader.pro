@@ -30,7 +30,8 @@ OTHER_FILES += \
     docs/user-guide/guide_fr.html \
     docs/user-guide/guide_de.html \
     docs/user-guide/guide_es.html \
-    docs/user-guide/style.css
+    docs/user-guide/style.css \
+    Resources/app_theme.qss
 
 SOURCES += \
     main.cpp \

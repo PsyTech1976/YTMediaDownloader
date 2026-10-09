@@ -133,6 +133,11 @@ In `MainWindow::MainWindow` e `MainWindow::showEvent(QShowEvent *event)` viene e
   - Sanifica `LD_LIBRARY_PATH` e percorsi interni AppImage (`$APPDIR`), ripristinando `LD_LIBRARY_PATH_ORIG` per evitare conflitti di librerie con i file manager di sistema (Dolphin su KDE Plasma, Nautilus su GNOME, Nemo, Caja).
   - Utilizza `--select` nativo su Dolphin e Nautilus con fallback non bloccante all'interfaccia D-Bus `ShowItems`.
 
+### 3.7 Coerenza Visiva, Tema Grafico Unificato e Risorse Incorporate
+- **Stile Multipiattaforma Determinista**: In `main.cpp` viene forzato `QApplication::setStyle(QStyleFactory::create("Fusion"))` abbinato a una `QPalette` moderna e luminosa predefinita, garantendo che l'applicazione appaia identica e armoniosa su qualsiasi ambiente desktop Linux (GNOME, KDE Plasma con temi scuri, XFCE).
+- **Foglio di Stile Globale (`app_theme.qss`)**: Incorporato nelle risorse Qt (`:/theme.qss`), applica bordi arrotondati, spaziature ergonomiche, evidenziazione stati hover/focus e styling unificato per controlli, progress bar, groupbox e barre dei menu.
+- **Risorse e Traduzioni Incorporate**: Tutti i file `.rsc` delle traduzioni (IT, EN, FR, DE, ES) e i fogli di stile sono compilati nel file binario tramite `resources.qrc`, garantendo la completa indipendenza dell'applicazione dalla cartella di lavoro corrente.
+
 ---
 
 ## 4. Packaging Standalone e Rilascio AppImage

@@ -76,8 +76,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_workerThread, &QThread::finished, m_ffmpegManager, &QObject::deleteLater);
 
     // Configurazione dimensioni della finestra
-    setFixedHeight(sizeHint().height());
-    setMinimumWidth(720);
+    setMinimumSize(780, 480);
+    resize(800, 500);
 
     // Assegnazione dell'icona personalizzata dell'applicazione
     QIcon appIcon(":/icons/icon.png");

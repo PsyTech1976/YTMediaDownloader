@@ -53,9 +53,16 @@
   - Causa 2: Inclusione di flussi frammentati HLS m3u8 (es. 233-x) con bitrate nullo nella lista audio anziché dare priorità ai flussi HTTPS diretti ad alta fedeltà (140-x AAC e 251-x Opus).
   - Soluzione: Rimossi i parametri divergenti extractor-args consentendo a yt-dlp di operare con configurazione nativa e allineata tra analisi e download; filtrati i flussi m3u8 a favore di flussi diretti HTTPS; ordinamento decrescente delle tracce per bitrate audio; migliorata la stringa di formato fail-safe con preservazione delle tracce audio selezionate.
   - Ricompilazione binario, packaging AppImage aggiornato e copia su Scrivania (~/Scrivania/YTMediaDownloader.AppImage).
-[2026-10-07 16:22:00] RILASCIO COMPLETO, VERIFICA CODICE E GUIDE MULTILINGUA:
-  - Verifica esaustiva e completezza dei commenti in tutto il codice sorgente C++ (.h e .cpp) con annotazioni Doxygen su classi, metodi, strutture e punti d'ingresso.
-  - Revisione e allineamento di tutte le guide utente HTML in 5 lingue (guide_it.html, guide_en.html, guide_fr.html, guide_de.html, guide_es.html) con spiegazione completa delle 11 sezioni operative (avvio e focus cursore, barra dei menu e scorciatoie, integrazione di sistema XDG, analisi video, selezione multitraccia, worker thread asincrono e cancellazione sicura, metadati lingua ISO 639-2, visualizzazione file nel desktop con doppia modalità, impostazioni con icone bandiere grafiche e crediti software PsyTech6 & IA).
-  - Verifica e allineamento del file delle specifiche tecniche SPEC.md.
-  - Ricompilazione pulita con make -j$(nproc) e rigenerazione AppImage standalone con appimagetool integrando yt-dlp, ffmpeg e librerie audio/video.
-  - Distribuzione del pacchetto aggiornato su Scrivania (~/Scrivania/YTMediaDownloader.AppImage) ed esportazione archivio di rilascio.
+[2026-10-09 11:42:00] BUGFIX COERENZA VISIVA E TEMA GRAFICO UNIFICATO:
+  - Risolto il problema per cui l'applicazione compilata da git appariva visivamente differente dagli screenshot della documentazione.
+  - Causa 1: Mancata definizione dello stile applicativo QStyle in main.cpp, con ereditarietà casuale del tema del sistema operativo desktop (es. palette scura di sistema su KDE Plasma in contrasto con gli stili inline chiari).
+  - Causa 2: Assenza di un foglio di stile globale (QSS) e di una palette predefinita moderna per tutti i widget dell'interfaccia.
+  - Causa 3: Dimensione bloccata con setFixedHeight(sizeHint()) invece di consentire un layout flessibile (800x500 min).
+  - Causa 4: File di localizzazione .rsc non inclusi in resources.qrc con rischio di perdita delle traduzioni se il binario veniva eseguito da directory non standard.
+  - Soluzione:
+    1. Forzato lo stile standard Fusion multipiattaforma e palette luminosa coerente in main.cpp.
+    2. Creato e applicato il foglio di stile globale Resources/app_theme.qss (incorporato in resources.qrc).
+    3. Incorporati tutti i file di localizzazione .rsc in resources.qrc con fallback automatico in LocalizationManager::loadLanguage().
+    4. Aggiornata la geometria di MainWindow con resize(800, 500) e setMinimumSize(780, 480).
+    5. Rigenerati tutti gli screenshot (IT ed EN) con privacy blur per garantire perfetta rispondenza grafica al 100%.
+

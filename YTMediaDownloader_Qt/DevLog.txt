@@ -32,13 +32,37 @@
   - Aggiornamento documentazione nel codice sorgente, guide HTML (IT, EN, FR, DE, ES) e SPEC.md.
   - Rilascio standalone AppImage con bundling completo di ffmpeg, ffprobe, yt-dlp e copia su Scrivania.
 
-[2026-10-07 12:32:01] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
-[2026-10-07 12:32:01] INTEGRAZIONE_SISTEMA: File .desktop creato con successo in: /home/tonibu/.local/share/applications/YTMediaDownloader.desktop (Exec: /home/tonibu/.gemini/antigravity/scratch/YTMediaDownloader/YTMediaDownloader_Qt/test_verification)
-[2026-10-07 12:32:01] INTEGRAZIONE_SISTEMA: Integrazione nel menu di sistema disabilitata e file .desktop rimosso.
-[2026-10-07 12:42:02] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
-[2026-10-07 12:42:02] FILE_MANAGER: Aperta cartella di download: /home/tonibu/Video
-[2026-10-07 13:06:19] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
-[2026-10-07 13:12:41] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
-[2026-10-07 13:59:03] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
-[2026-10-07 16:30:12] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
-[2026-10-07 16:30:13] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:06:35] AVVIO: MainWindow inizializzata con MenuBar, Desktop Integration e FFmpeg worker thread.
+[2026-10-07 13:10:00] BUGFIX & REFACTORING "MOSTRA NELLA CARTELLA":
+  - Risolto il problema del pulsante "Mostra nella Cartella" (btnOpenFolder) che appariva inattivo o non rispondeva su Wayland / KDE Plasma / AppImage.
+  - Sostituito il blocco sincrono/bloccante dbus-send con l'esecuzione asincrona staccata (QProcess::startDetached) e sanificazione dell'ambiente LD_LIBRARY_PATH all'interno dell'AppImage (metodo ausiliario FileManager::runDetachedCommand).
+  - Implementato supporto nativo prioritario per Dolphin (--select), Nautilus (--select), Nemo e Caja prima del fallback asincrono D-Bus.
+  - Rifattorizzato il flusso logico del pulsante in un metodo dedicato richiamabile MainWindow::openDownloadLocation() per garantire manutenibilità ed estendibilità.
+  - Persistenza dell'ultimo percorso file scaricato (lastDownloadedFilePath) in SettingsManager per mantenere la modalità selezione file anche tra sessioni dell'applicazione.
+  - Aggiunto feedback immediato nella barra di stato all'apertura della cartella o selezione del file.
+[2026-10-07 13:14:00] BUGFIX BANDIERE MENU LINGUA:
+  - Risolto il problema della mancata visualizzazione delle bandiere nei menu lingua (finestra principale e finestra Guida).
+  - Causa: l'uso di caratteri unicode regional indicator (emoji) non è supportato dai font di default o dal rendering nativo dei menu di sistema su Linux.
+  - Soluzione: integrati file icona PNG reali ad alta risoluzione delle bandiere nazionali (it, gb, fr, de, es) nel file di risorse Qt (resources.qrc sotto :/icons/flags/).
+  - Aggiunti i metodi di utilità LocalizationManager::languageIcon(code) e LocalizationManager::languageCleanName(code).
+  - Aggiornati con icone reali sia i menu a discesa (popup testata e QMenuBar) sia i pulsanti con indicatore lingua della MainWindow e della HelpDialog, nonché il selettore lingua in SettingsDialog.
+  - Ricompilazione binario, packaging AppImage aggiornato e copia su Scrivania (~/Scrivania/YTMediaDownloader.AppImage).
+[2026-10-07 13:59:00] BUGFIX DOWNLOAD TRACCE AUDIO:
+  - Risolto il problema per cui le tracce audio selezionate non venivano scaricate correttamente pur essendo riconosciute in analisi.
+  - Causa 1: Disallineamento tra i parametri di estrazione: analyzeUrl utilizzava player_client=all mentre startDownload forzava player_client=web_embedded. Poiché web_embedded espone un set di format ID completamente differente (o privo delle tracce localizzate ad alto bitrate), yt-dlp falliva il formato richiesto e attivava il fallback silenzioso su bestaudio (scaricando solo l'audio default/inglese).
+  - Causa 2: Inclusione di flussi frammentati HLS m3u8 (es. 233-x) con bitrate nullo nella lista audio anziché dare priorità ai flussi HTTPS diretti ad alta fedeltà (140-x AAC e 251-x Opus).
+  - Soluzione: Rimossi i parametri divergenti extractor-args consentendo a yt-dlp di operare con configurazione nativa e allineata tra analisi e download; filtrati i flussi m3u8 a favore di flussi diretti HTTPS; ordinamento decrescente delle tracce per bitrate audio; migliorata la stringa di formato fail-safe con preservazione delle tracce audio selezionate.
+  - Ricompilazione binario, packaging AppImage aggiornato e copia su Scrivania (~/Scrivania/YTMediaDownloader.AppImage).
+[2026-10-09 11:42:00] BUGFIX COERENZA VISIVA E TEMA GRAFICO UNIFICATO:
+  - Risolto il problema per cui l'applicazione compilata da git appariva visivamente differente dagli screenshot della documentazione.
+  - Causa 1: Mancata definizione dello stile applicativo QStyle in main.cpp, con ereditarietà casuale del tema del sistema operativo desktop (es. palette scura di sistema su KDE Plasma in contrasto con gli stili inline chiari).
+  - Causa 2: Assenza di un foglio di stile globale (QSS) e di una palette predefinita moderna per tutti i widget dell'interfaccia.
+  - Causa 3: Dimensione bloccata con setFixedHeight(sizeHint()) invece di consentire un layout flessibile (800x500 min).
+  - Causa 4: File di localizzazione .rsc non inclusi in resources.qrc con rischio di perdita delle traduzioni se il binario veniva eseguito da directory non standard.
+  - Soluzione:
+    1. Forzato lo stile standard Fusion multipiattaforma e palette luminosa coerente in main.cpp.
+    2. Creato e applicato il foglio di stile globale Resources/app_theme.qss (incorporato in resources.qrc).
+    3. Incorporati tutti i file di localizzazione .rsc in resources.qrc con fallback automatico in LocalizationManager::loadLanguage().
+    4. Aggiornata la geometria di MainWindow con resize(800, 500) e setMinimumSize(780, 480).
+    5. Rigenerati tutti gli screenshot (IT ed EN) con privacy blur per garantire perfetta rispondenza grafica al 100%.
+

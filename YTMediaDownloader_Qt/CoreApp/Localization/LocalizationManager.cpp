@@ -95,6 +95,14 @@ bool LocalizationManager::loadLanguage(const QString& langCode)
     }
 
     if (!QFile::exists(filePath)) {
+        // Cerca nelle risorse incorporate Qt
+        QString qrcPath = QString(":/localizzazione/%1.rsc").arg(langCode);
+        if (QFile::exists(qrcPath)) {
+            filePath = qrcPath;
+        }
+    }
+
+    if (!QFile::exists(filePath)) {
         qWarning() << "[LocalizationManager] File non trovato:" << filePath;
         return false;
     }

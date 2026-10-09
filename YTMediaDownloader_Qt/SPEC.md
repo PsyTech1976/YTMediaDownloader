@@ -7,7 +7,7 @@ Il software è un **software realizzato con IA su un'idea di PsyTech6**.
 
 L'applicazione supporta:
 - **Paternità ed Identità**: Realizzato con intelligenza artificiale su concept originale di PsyTech6, con finestra "Informazioni sul Software" dedicata (`AboutDialog`).
-- **Analisi approfondita e resilient downloading**: Estrazione JSON con bypass delle restrizioni DRM, formati non supportati (-drc) e prevenzione attiva degli errori HTTP 429 ("Too Many Requests") tramite client `web_embedded`.
+- **Analisi approfondita e resilient downloading**: Estrazione JSON con bypass delle restrizioni DRM, formati non supportati (-drc) e download con preservazione fedele delle tracce audio selezionate (priorità ai flussi diretti HTTPS ad alta qualità e ordinamento per bitrate).
 - **Selezione personalizzata avanzata**: Formati video fino a 4K/8K a 60fps, contenitori MP4/MKV/WebM, audio multitraccia prioritario per lingua originale e localizzata, e sottotitoli multipli.
 - **Worker Thread asincrono (`QThread`)**: Elaborazione FFmpegManager disaccoppiata dall'interfaccia grafica per garantire reattività fluida, con terminazione ad albero dei processi (`killProcessTree` via SIGKILL/pkill) e rimozione pulita dei file temporanei in caso di interruzione.
 - **Barra dei menu (`QMenuBar`) e scorciatoie**: Menu File, Opzioni, Lingua e Aiuto con scorciatoie complete (`Ctrl+V`, `Ctrl+D`, `Esc`, `Ctrl+O`, `Ctrl+F`, `Ctrl+E`, `Ctrl+Q`, `F1`, `Ctrl+I`).
@@ -110,7 +110,7 @@ Finestra modale informativa che visualizza:
 Implementata in `MainWindow::setupMenuBar()` con collegamenti completi a:
 - **File**: Incolla e Analizza Link (`Ctrl+V`), Avvia Download (`Ctrl+D`), Blocca Processo (`Esc`), Apri File Scaricato (`Ctrl+O`), Mostra nella Cartella (`Ctrl+F`), Esci (`Ctrl+Q`).
 - **Opzioni**: Modifica Opzioni Video/Audio... (`Ctrl+E`), Visibilità nei Menu di Sistema (azione con spunta sincronizzata con il pulsante header), Impostazioni... (`Ctrl+,`).
-- **Lingua**: Gruppo di azioni esclusive con bandiere (🇮🇹, 🇬🇧, 🇫🇷, 🇩🇪, 🇪🇸).
+- **Lingua**: Gruppo di azioni esclusive con icone grafiche PNG delle bandiere (IT, EN, FR, DE, ES) incorporate nelle risorse Qt (`:/icons/flags/`).
 - **Aiuto**: Guida Utente (`F1`), Informazioni sul Software... (`Ctrl+I`).
 
 ### 3.4 Focus del Cursore all'Avvio
@@ -120,6 +120,24 @@ In `MainWindow::MainWindow` e `MainWindow::showEvent(QShowEvent *event)` viene e
 - Nessun dato sensibile, username di sistema, token o password salvati nel codice sorgente.
 - Tutte le cartelle di default e cache utilizzano `QStandardPaths` e `QDir::homePath()`.
 
+### 3.6 Gestione e Integrazione Desktop: "Mostra nella Cartella"
+- **Metodo Dedicato `MainWindow::openDownloadLocation()`**:
+  - Centralizza la logica di visualizzazione della destinazione o del file multimediale scaricato.
+  - **Modalità 1 (Nessun file scaricato)**: apre la cartella di download predefinita o selezionata nel file manager del desktop mostrandone il contenuto.
+  - **Modalità 2 (File scaricato)**: se il file è presente su disco, apre il gestore file di sistema ed evidenzia/seleziona direttamente il file.
+  - Mantiene il pulsante `btnOpenFolder` sempre attivo in tutti gli stati dell'applicazione.
+  - Persistenza della cronologia dell'ultimo download (`lastDownloadedFilePath`) tramite `SettingsManager`, preservando la selezione del file anche al riavvio dell'applicazione.
+  - Feedback visivo istantaneo sulla barra di stato (`lblStatus`).
+- **Esecuzione Asincrona e Sanificazione AppImage (`FileManager::runDetachedCommand`)**:
+  - Esegue i comandi desktop in modo non bloccante (`QProcess::startDetached`).
+  - Sanifica `LD_LIBRARY_PATH` e percorsi interni AppImage (`$APPDIR`), ripristinando `LD_LIBRARY_PATH_ORIG` per evitare conflitti di librerie con i file manager di sistema (Dolphin su KDE Plasma, Nautilus su GNOME, Nemo, Caja).
+  - Utilizza `--select` nativo su Dolphin e Nautilus con fallback non bloccante all'interfaccia D-Bus `ShowItems`.
+
+### 3.7 Coerenza Visiva, Tema Grafico Unificato e Risorse Incorporate
+- **Stile Multipiattaforma Determinista**: In `main.cpp` viene forzato `QApplication::setStyle(QStyleFactory::create("Fusion"))` abbinato a una `QPalette` moderna e luminosa predefinita, garantendo che l'applicazione appaia identica e armoniosa su qualsiasi ambiente desktop Linux (GNOME, KDE Plasma con temi scuri, XFCE).
+- **Foglio di Stile Globale (`app_theme.qss`)**: Incorporato nelle risorse Qt (`:/theme.qss`), applica bordi arrotondati, spaziature ergonomiche, evidenziazione stati hover/focus e styling unificato per controlli, progress bar, groupbox e barre dei menu.
+- **Risorse e Traduzioni Incorporate**: Tutti i file `.rsc` delle traduzioni (IT, EN, FR, DE, ES) e i fogli di stile sono compilati nel file binario tramite `resources.qrc`, garantendo la completa indipendenza dell'applicazione dalla cartella di lavoro corrente.
+
 ---
 
 ## 4. Packaging Standalone e Rilascio AppImage
@@ -128,10 +146,11 @@ L'AppImage `YTMediaDownloader.AppImage` include nativamente:
 1. Il binario `YTMediaDownloader` compilato con C++17 e Qt 5.
 2. I binari `yt-dlp`, `ffmpeg`, `ffprobe` inseriti in `usr/bin/`.
 3. Le librerie condivise audio/video (`libavdevice`, `libavfilter`, `libavformat`, `libavcodec`, `libavutil`, `libswresample`, `libswscale`) in `usr/lib/`.
-4. Script di bootstrap `AppRun` che imposta dinamicamente:
+4. Script di bootstrap `AppRun` che imposta dinamicamente e preserva l'ambiente originale:
    ```sh
    HERE="$(dirname "$(readlink -f "${0}")")"
    export PATH="${HERE}/usr/bin:${PATH}"
+   export LD_LIBRARY_PATH_ORIG="${LD_LIBRARY_PATH}"
    export LD_LIBRARY_PATH="${HERE}/usr/lib:${LD_LIBRARY_PATH}"
    exec "${HERE}/usr/bin/YTMediaDownloader" "$@"
    ```
